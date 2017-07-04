@@ -1,0 +1,85 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      var historicalOverlay;
+
+      function initMap() {
+
+        var lati = 36.007564;
+        var long = -78.914698;
+
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: lati, lng: long},
+          zoom: 18
+        });
+
+
+ //        var imageBounds = {
+ //   north: long+.05,
+ //   south: long-.05,
+ //   east: lati+.05,
+ //   west: lati-.05
+ // };
+
+
+
+
+ var setoverlay = function(img, lat, lon ){
+   var imageBounds = {
+  north: lat+.0001,
+  south: lat-.0001,
+  east: lon+.0001,
+  west: lon-.0001
+  };
+
+   historicalOverlay = new google.maps.GroundOverlay(img,imageBounds);
+   historicalOverlay.setMap(map);
+ }
+
+ setoverlay('img/succinate.png', 36.006597, -78.915170);
+ setoverlay('img/fumarate.png', 36.007215, -78.915189);
+ setoverlay('img/malate.png', 36.007666, -78.915286);
+ setoverlay('img/citric.png', 36.008291, -78.915125);
+ setoverlay('img/isocitric.png', 36.008893, -78.915098);
+ // setoverlay('img/malate.png', 36.007666, -78.915286);
+
+
+
+
+
+
+}
+
+
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZdnRcO3TswUTsA9kvnPrnPIt3fAZqSUs&callback=initMap"
+    type="text/javascript"></script>
+
+  </body>
+</html>
